@@ -1,0 +1,32 @@
+{{!Event Partial Template}}
+{{!Author: Adam Kerr, Keegan }}
+
+<section class = "event-holder">
+  <div id = "event-picture">
+    <img src={{source}} />
+  </div>
+  <div id = "event-name" class="event-name-search">
+    {{name}}
+  </div>
+  <div id = "event-details">
+    {{details}}
+  </div>
+  <div id = "event-description">
+    {{description}}
+  </div>
+  {{#unless faqts}}
+    <div class="going">Look whos going!</div>
+  <div class="overall">
+  <div class="rsvp-holder">
+  <div id="event-rsvp" class = "event-rsvp-list{{@index}}">
+    {{#each going}}
+      {{> rsvp}}
+    {{/each}}
+  </div>
+    </div>
+    <div class="buttoninside">
+    {{> button}}
+    </div>
+  {{/unless}}
+  </div>
+</section>
