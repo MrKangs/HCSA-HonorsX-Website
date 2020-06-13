@@ -1,0 +1,49 @@
+{{!Home Page View Template}}
+{{!Author: Adam Kerr and Kenneth Kang}}
+
+<main class = "home">
+<div id = "welcome">
+  <h1>Welcome to HCSA/HonorsX!</h1>
+</div>
+
+<img class = "full-image" src = "./Images/HomePage-Image1.jpeg" >
+
+<div id = "intro">
+  <p>The students of the Honors College at Oregon State University, 
+  recognizing a similarity of interests and need for effective representation, 
+  do hereby establish this association, to foster a strong sense of community between members, 
+  to give back to the local community, to provide for the social development of students, 
+  to represent the students of the Honors College to the entire campus, 
+  and to promote their general welfare within the framework of Oregon State University.
+  </p>
+</div>
+
+<img id = "left-side-image" src = "./Images/HomePage-Image2.jpeg">
+<img id = "right-side-image" src = "./Images/HomePage-Image3.jpeg">
+
+<div id = "goals"><h2>Goals & Mission</h2>
+  <ol id = "goals-list">
+    <li class = "goals-number">
+        Provide an intentional space for students of the Honors College to give input 
+        to faculty and staff on the student experience and larger mission and vision of the College.
+    </li>
+    <li class = "goals-number">
+        Plan and implement social, academic, professional development, and service activities 
+        for students in the Honors College to enhance their experience throughout the year.
+    </li>
+    <li class = "goals-number">
+        Encourage engagement between diverse student populations within the Honors College. 
+        Specifically, this organization will join together Honors students living on and off campus.
+    </li>
+  </ol>
+</div>
+
+<img class = "full-image" src = "./Images/HomePage-Image4.jpg">
+
+<section id = "peek">
+  <h2 id= "sub-title">Upcoming Event</h2>
+    <div class ="all-events">
+      {{> event}}
+    </div>
+</section>
+</main>

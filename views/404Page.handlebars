@@ -1,0 +1,27 @@
+{{!Error Page View Template}}
+{{!Author: Adam Kerr and Kenneth Kang}}
+
+<main class="error-container">
+<h2 id= "ErrorCode">404 Error</h2>
+<h3 id ="ErrorMessage">Whoops! The Swiharts can't find the page you're looking for!</h3>
+
+<script>
+var num = document.getElementById('ErrorCode');
+var text = document.getElementById('ErrorMessage');
+var currentColor = 0;
+
+    setInterval(function(){
+        if (currentColor == 0){
+            num.style.color = "#000000";
+            text.style.color = "#d73f09";
+            currentColor = 1;
+        }
+        else if (currentColor == 1){
+            num.style.color = "#d73f09";
+            text.style.color = '#000000';
+            currentColor = 0;
+        }
+    }, 500 );
+
+</script>
+</main>
