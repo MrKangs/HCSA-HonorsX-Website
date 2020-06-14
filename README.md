@@ -1,27 +1,36 @@
-Welcome to the new HCSA website,
+# HCSA/HonorsX Website
 
-We made the Honors College Student Associate Webpage that it will be launching this upcoming fall. 
+Welcome to the HCSA/HonorsX Website repository. In this repository, you can modify, add, and delete the HCSA/HonorsX Website. 
+In this read me file, you will learn how to modify content inside the website. 
 
-Currently, we have the home page, event page, and member page. 
+## Table of Contents
 
-In the home page, you can find the HCSA introduction, goals/missions, and the upcoming events.
-While the images were hard coded, the remaining was using handlebars. 
-Inside the home page, you can see that there is a part of upcoming events. That part was also using the event handlebar to display in that.
-While there are total 4 different event we made, there will only one that will be displaying which the most current one. 
+* [Overview](##Overview)
+* [Current Pages](##Current Pages)
+ * [Home Page](###Home Page)
+ * [Event Page](###Event Page)
+ * [Member Page](###Member Page)
+ * [Community Page](###Community Page)
+ * [Study Group Page](###Study Group Page)
+ * [Error Page](###Error Page)
+* How to modify the...
+  * Home Page
+  * Event Page
+  * Member Page
+  * Community Page
+  * Study Group Page
+* Contributing
+  * GitHub Issue Page
 
-In the event page, you can see that there is a search bar to look up the event that the user wants to find. 
-At the same time, there is RSVP button to RSVP the event. Once you click that button, you will get a pop-up/modal 
-that will make the user to enter the name, student email address, and student ONID. 
-Once the user select the and press confirm, then it will update the box that who is coming for email address and name, but not the ONID. 
-Below the Event boxes, there is a calendar so it is easy to see what events will be coming for the month. 
+## Overview
 
-In the members page, you can see the profile of club(currently, those who worked on the site) such as their picture, bio, and links to contact them. 
+This website is related to the Honors College Student Association (HCSA) and HonorsX club website. To get more information about this club, please check out (here)[https://honors.oregonstate.edu/student-involvement]
+In this website, there are home/main page, Event Page, Member Page, Community Page, Study Group Page, and the Error Page. In the next section, we will describe these pages in-depth. 
 
-Last, there is a 404 error page if you use different path rather than the designated path for each page.
-
-I hope this readme is helpful for understanding what we accomplished...
-
-
-Best,
-
-Group 42
+## Current Pages
+### Home Page
+### Event Page
+### Member Page
+### Community Page
+### Study Group Page
+### Error Page
