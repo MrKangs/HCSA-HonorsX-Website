@@ -8,7 +8,7 @@ function handleAcceptClick(){
   var email = document.getElementById('email-input').value.trim();
   var id = document.getElementById('id-input').value.trim();
 
-  if(!person || !email) alert("All fields must be filled in!");
+  if(!person || !email || !id) alert("All fields must be filled in!");
   else{
     var request = new XMLHttpRequest();
     var requestUrl = "/events/" + rsvpIndexClick + "/addPerson";
@@ -96,10 +96,12 @@ function openModal(index){
   var modal = document.getElementById("rsvp-add");
   var personText = document.getElementById("person-input");
   var emailText = document.getElementById("email-input");
+  var idText = document.getElementById("id-input");
   backdrop.style.display = "block";
   modal.style.display = "block";
   personText.value = "";
   emailText.value = "";
+  idText.value = "";
 
 }
 
@@ -113,7 +115,7 @@ function closeModal(){
   modal.style.display = "none";
 }
 
-var monthIndex = 5;
+var monthIndex = 6;
 
 function changeMonth(direction){
   var temp = direction;
