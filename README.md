@@ -21,3 +21,10 @@ There are 2 ways to update the website.
 1. For code developers, we check more often the GitHub Page than our email, which we will see a new update request faster than checking our email. Therefore, we recommend using GitHub. ;)
 
 2. However, there are some people don't want to share their information, which we get it. Therefore, we have an option for email request, but we won't be responsive as like GitHub Issue. 
+
+## What are the other folders are?
+Except the Reference folder, the other folders are the past event/community service/study group that happened and was uploaded to the website. 
+If you want to take a look at them, please do so that you can get creative ideas to host a different event/community service/study group that happened before or not. 
+At the same time, please do not change anything in the Reference folder. 
+
+# Again, PLEASE DO NOT TOUCH REFERENCE FOLDER!!!
