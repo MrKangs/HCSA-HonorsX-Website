@@ -1,2 +1,0 @@
-//Introduction javascript file
-//Author:

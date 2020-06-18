@@ -1,5 +1,5 @@
 //Events javascript file
-//Author: Adam Kerr, Keegan
+//Author: Adam Kerr, Keegan, Kenneth Kang
 
 var rsvpIndexClick = -1;
 
@@ -7,8 +7,11 @@ function handleAcceptClick(){
   var person = document.getElementById('person-input').value.trim();
   var email = document.getElementById('email-input').value.trim();
   var id = document.getElementById('id-input').value.trim();
+  var reg = /^([A-Za-z0-9_\-\.])+\@(oregonstate)+\.(edu)$/;
 
-  if(!person || !email) alert("All fields must be filled in!");
+  if(!person || !email || !id) alert("All fields must be filled in!");
+  if(id.length != 9) alert("Invalid ONID number!");
+  if(reg.test(email) == false) alert("Invalid Email Address!");
   else{
     var request = new XMLHttpRequest();
     var requestUrl = "/events/" + rsvpIndexClick + "/addPerson";
@@ -96,10 +99,12 @@ function openModal(index){
   var modal = document.getElementById("rsvp-add");
   var personText = document.getElementById("person-input");
   var emailText = document.getElementById("email-input");
+  var idText = document.getElementById("id-input");
   backdrop.style.display = "block";
   modal.style.display = "block";
   personText.value = "";
   emailText.value = "";
+  idText.value = "";
 
 }
 
@@ -113,7 +118,7 @@ function closeModal(){
   modal.style.display = "none";
 }
 
-var monthIndex = 5;
+var monthIndex = 6;
 
 function changeMonth(direction){
   var temp = direction;

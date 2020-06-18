@@ -103,13 +103,13 @@ h3{
 #welcome{
     color: #d73f09;
     font-size: xx-large;
-    font: 800;
-    padding: 50px 0px;
+    padding: 50px 10px;
+    min-width: 805px;
 }
 
 .full-image{
 
-    height: 40%;
+    height: 10%;
     width: 90%;
     padding: 10px 50px;
     text-align: center;
@@ -420,7 +420,7 @@ h3{
     bottom: 0;
     left: 0;
     right: 0;
-    max-width: 300px;
+    max-width: 400px;
     height: 265px;
     margin-top: 50px;
     margin-bottom: 0px;
@@ -475,7 +475,7 @@ h3{
 
 #id-input-textarea {
     font-size: 18px;
-    width: 75px;
+    width: 70px;
 }
 
 #person-input {
@@ -483,7 +483,7 @@ h3{
     white-space: nowrap;
     overflow: hidden;
     height: 25px;
-    width: 150px;
+    width: 200px;
 
 }
 
@@ -492,7 +492,7 @@ h3{
     white-space: nowrap;
     overflow: hidden;
     height: 25px;
-    width: 150px;
+    width: 200px;
 
 }
 
@@ -501,7 +501,7 @@ h3{
     white-space: nowrap;
     overflow: hidden;
     height: 25px;
-    width: 150px;
+    width: 200px;
 
 }
 
