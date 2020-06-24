@@ -241,6 +241,22 @@ h3{
 
 /* Event Page Focus Setup */
 
+.event-head{
+    margin-bottom: 10px;
+    display: block;
+    margin-bottom: 50px;
+
+}
+
+#event-header{
+    position: relative;
+    text-align:center;
+    color: #d73f09;
+    font-size: 64px;
+    margin-bottom: 10px;
+
+}
+
 .all-events{
     margin: 50px 5%;
     display: flex;
@@ -291,6 +307,79 @@ h3{
     background-color: #eee;
 
 }
+
+/* Community Service Page */
+
+/* Event Page Focus Setup */
+
+.community-service-head{
+    margin-bottom: 10px;
+    display: block;
+    margin-bottom: 50px;
+
+}
+
+#community-service-header{
+    position: relative;
+    text-align:center;
+    color: #d73f09;
+    font-size: 64px;
+    margin-bottom: 10px;
+
+}
+
+.all-community-services{
+    margin: 50px 5%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+#community-service-picture img{
+    margin: 8px;
+    float: left;
+    width: 40%;
+    height: 40%;
+    margin-top: 12px;
+    border: 1px solid black;
+    border-radius: 15px;
+    border-width: 2px;
+}
+
+#community-service-name{
+    margin: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #d74009;
+
+}
+
+#community-service-details{
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+#community-service-description{
+    margin: 8px;
+    margin-top: 10px;
+
+}
+
+.community-service-holder{
+    flex: 1 1 40%;
+    font-size: 14px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 3px;
+    min-width: 430px;
+    background-color: #eee;
+
+}
+
+/* RSVP button */
 
 .overall{
     display: flex;
@@ -351,6 +440,8 @@ h3{
     padding-left: 5px;
 
 }
+
+/* Search Bar */
 
 .search{
     padding: 0;
@@ -542,6 +633,8 @@ h3{
 
 }
 
+/* Calender */
+
 .week {
     display: flex;
     height: 100px;
@@ -640,18 +733,4 @@ h3{
 
 }
 
-.event-head{
-      margin-bottom: 10px;
-      display: block;
-      margin-bottom: 50px;
 
-}
-
-#event-header{
-      position: relative;
-      text-align:center;
-      color: #d73f09;
-      font-size: 64px;
-      margin-bottom: 10px;
-
-}

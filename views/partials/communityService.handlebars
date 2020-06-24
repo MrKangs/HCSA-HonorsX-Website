@@ -1,0 +1,32 @@
+{{!Event Partial Template}}
+{{!Author: Adam Kerr, Keegan, Kenneth }}
+
+<section class = "community-service-holder">
+  <div id = "community-service-picture">
+    <img src={{source}} />
+  </div>
+  <div id = "community-service-name" class="community-service-name-search">
+    {{name}}
+  </div>
+  <div id = "community-service-details">
+    {{details}}
+  </div>
+  <div id = "community-service-description">
+    {{description}}
+  </div>
+  {{#unless faqts}}
+    <div class="going">Look whos going!</div>
+  <div class="overall">
+  <div class="rsvp-holder">
+  <div id="community-service-rsvp" class = "community-service-rsvp-list{{@index}}">
+    {{#each going}}
+      {{> rsvp}}
+    {{/each}}
+  </div>
+    </div>
+    <div class="buttoninside">
+    {{> button}}
+    </div>
+  {{/unless}}
+  </div>
+</section>
