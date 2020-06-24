@@ -1,5 +1,5 @@
 //Server file for website
-//Author: Adam Kerr, Keegan
+//Author: Adam Kerr, Keegan, Kenneth
 
 var path = require('path');
 var express = require('express');
