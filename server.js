@@ -4,6 +4,7 @@
 var path = require('path');
 var express = require('express');
 var exp_handle = require("express-handlebars");
+var MongoClient = require('mongodb').MongoClient;
 var peopleData = require('./peopleData');
 var eventData = require('./eventData');
 var communityServiceData = require('./communityServiceData')
