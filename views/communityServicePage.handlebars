@@ -1,0 +1,42 @@
+{{!Events Page View Template}}
+{{!Author: Adam Kerr, Keegan, Kenneth}}
+
+<div class="community-service-head">
+  <h1 id="community-service-header">Community Service</h1>
+  <li class="navitem search">
+    <input type="text" id="search-bar" class = "searchhh" placeholder="Search...">
+  </li>
+</div>
+
+<main class="community-service-container">
+
+
+<div class="all-community-services">
+{{#each COMMUNITY}}
+  {{> communityService}}
+{{/each}}
+</div>
+
+{{> addRSVP}}
+
+</main>
+
+    <div class="month-view">
+
+        <h1 class="month-name">{{month}}
+        <button type="button" id="next-month"><i class="fas fa-chevron-right"></i></button>
+        <button type="button" id="previous-month"><i class="fas fa-chevron-left"></i></button>
+        </h1>
+                <div class="week-day">
+            {{#each weekdays}}
+              <h3 class="day">{{this}}</h3>
+            {{/each}}
+
+        </div>
+          {{#each daysofweek}}
+            {{> calendarweek}}
+          {{/each}}
+
+
+
+    </div>
