@@ -4,14 +4,14 @@
 var path = require('path');
 var express = require('express');
 var exp_handle = require("express-handlebars");
-var MongoClient = require('mongodb');
+var MongoClient = require('mongodb').MongoClient;
 var connectionString = 'mongodb+srv://MrKangs:zwqF2R6aIoN184kh@hcsahonorsx-el8jr.mongodb.net/test?retryWrites=true&w=majority';
 
-var peopleData = require('./peopleData');
-var eventData = require('./eventData');
-var communityServiceData = require('./communityServiceData')
-var calendardata = require('./calendarData');
+
+
+
 var fs = require('fs');
+const { runInNewContext } = require('vm');
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -30,36 +30,42 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
   const eventCollection = db.collection('eventData');
   const communityServiceCollection = db.collection('communityServiceData');
   const calendarCollection = db.collection('calendarData');
-
-
-
+  const peopleCollection = db.collection('peopleData');
+  
   app.get('/', function(req, res, next) {
-    console.log("Serving the Home Page");
-    var nextEvent = eventCollection[0];
-    res.status(200);
-    res.render("homePage", {
-      source: nextEvent.source,
-      name: nextEvent.name,
-      details: nextEvent.details,
-      description: nextEvent.description,
-      going: nextEvent.going,
-      faqts: "true"
+    eventCollection.find().toArray()
+    .then(result => {
+      res.render("homePage", {
+        source: result[0].source,
+        name: result[0].name,
+        details: result[0].details,
+        description: result[0].description,
+        going: result[0].going,
+        faqts: "true"
+      });
+      console.log("Serving the Home Page");
+      res.status(200);
     });
+    
+    
   });
   
   var monthindex = 5;
   
   app.get("/events", function(req, res, next){
     calendarCollection.find().toArray()
-    .then(results => {
-      res.render('eventsPage', {
-        EVENTS: eventCollection,
-        script: "./events.js",
-        faqts: 1,
-        month: results[monthindex].month,
-        weekdays: results[monthindex].weekdays,
-        daysofweek: results[monthindex].dates,
-      });
+    .then(calendar => {
+      eventCollection.find().toArray()
+      .then(results => {
+        res.render('eventsPage', {
+          EVENTS: results,
+          script: "./events.js",
+          faqts: 1,
+          month: calendar[monthindex].month,
+          weekdays: calendar[monthindex].weekdays,
+          daysofweek: calendar[monthindex].dates,
+        });
+      })
       console.log("Serving the Events Page");
       res.status(200);
     })
@@ -77,9 +83,8 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     }
   });
   
-  app.post("/events/:event/addPerson", function(req, res, next){
-    var event = req.params.event;
-    if(eventData[event]){
+  /*
+if(eventData[event]){
       eventData[event].going.push({
         person: req.body.person,
         email: req.body.email,
@@ -89,29 +94,37 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
         console.log(err);
       });
       res.status(200).send("Person Successfully Added");
+  */
+  app.post("/events/:event/addPerson", function(req, res, next){
+    var n = req.params.event;
+    if (eventCollection.find({eventNum: n})){
+      eventCollection.insert({eventNum: n}, {$addToSet: {
+        going: {
+          person: req.body.person,
+          email: req.body.email,
+          id: req.body.ID
+        }
+      }})
     }
-    else res.status(400).send("This request needs both a name, email, and ONID");
+    else{
+      res.status(400).send("This request needs both a name, email, and ONID");
+    }
   });
-  
-  app.get('/members', function(req, res, next){
-    console.log("Serving the Members Page");
-    res.status(200);
-    res.render('peoplePage', {
-      PEOPLE: peopleData,
-    });
-  })
-  
+    
   app.get('/community-service', function(req, res, next){
 
     calendarCollection.find().toArray()
-    .then(results => {
-      res.render('communityServicePage',{
-        COMMUNITY: communityServiceData,
-        script: "./communityService.js",
-        faqts: 1,
-        month: results[monthindex].month,
-        weekdays: results[monthindex].weekdays,
-        daysofweek: results[monthindex].dates,
+    .then(calendar => {
+      communityServiceCollection.find().toArray()
+      .then(results => {
+        res.render('communityServicePage',{
+          COMMUNITY: results,
+          script: "./communityService.js",
+          faqts: 1,
+          month: calendar[monthindex].month,
+          weekdays: calendar[monthindex].weekdays,
+          daysofweek: calendar[monthindex].dates,
+        });
       });
       console.log("Serving the Community Service Page");
       res.status(200);
@@ -143,6 +156,17 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     }
     else res.status(400).send("This request needs both a name, email, and ONID");;
   });
+
+  app.get('/members', function(req, res, next){
+    peopleCollection.find().toArray()
+    .then(results => {
+      res.render('peoplePage', {
+        PEOPLE: results
+      });
+      console.log("Serving the Members Page");
+      res.status(200);
+    });
+  });
   
   app.get('*', function(req, res){
     console.log("Serving the 404 Page");
@@ -150,9 +174,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     res.render('404Page', {
     });
   });
-})
-
-
+});
 
 app.listen(port, function(){
   console.log("Server is listening on this port: ", port);
