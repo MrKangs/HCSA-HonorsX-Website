@@ -1,53 +1,69 @@
 //Server file for website
 //Author: Adam Kerr, Keegan, Kenneth
 
+// All for the express server side part
 var express = require('express');
 var exp_handle = require("express-handlebars");
 var app = express();
 var port = process.env.PORT || 3000;
 
+// All for the MongoDB part
 var MongoClient = require('mongodb').MongoClient;
 var connectionString = 'mongodb+srv://MrKangs:zwqF2R6aIoN184kh@hcsahonorsx-el8jr.mongodb.net/test?retryWrites=true&w=majority';
 
+// Setting up as handlebars view
 app.engine('handlebars', exp_handle({ defualtLayout: "main"}));
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.static('public'));
 
+// This is change the calander month: 6 = July, 5 = June and such order
+var monthindex = 6;
 
 MongoClient.connect(connectionString, {useUnifiedTopology: true})
 .then(client => {
 
   console.log("Connected to Database");
   const db = client.db('HCSA_HonorsX');
+  const homeCollection = db.collection('homeData');
   const eventCollection = db.collection('eventData');
   const communityServiceCollection = db.collection('communityServiceData');
   const calendarCollection = db.collection('calendarData');
   const peopleCollection = db.collection('peopleData');
 
   
-  
+// This statment will manage the Home Page
   app.get('/', function(req, res, next) {
-    eventCollection.find().toArray()
-    .then(result => {
-      res.render("homePage", {
-        source: result[0].source,
-        name: result[0].name,
-        details: result[0].details,
-        description: result[0].description,
-        going: result[0].going,
-        faqts: "true"
-      });
+    homeCollection.find().toArray()
+    .then(results => {
+      eventCollection.find().toArray()
+      .then(result => {
+        res.render("homePage", {
+          welcome_message: results[0].Welcome_Message,
+          Intro: results[0].intro,
+          goal_message: results[0].Goal_Message,
+          Goal1: results[0].goal1,
+          Goal2: results[0].goal2,
+          Goal3: results[0].goal3,
+          upcoming_event_message: results[0].Upcoming_Event_Message,
+          Image1: results[0].image1,
+          Image2: results[0].image2,
+          Image3: results[0].image3,
+          Image4: results[0].image4,
+          source: result[0].source,
+          name: result[0].name,
+          details: result[0].details,
+          description: result[0].description,
+          going: result[0].going,
+          faqts: "true"
+        });
       console.log("Serving the Home Page");
       res.status(200);
-    });
-    
-    
-  });
+    });    
+  })});
   
-  var monthindex = 6;
-  
+// This statment will manage the Event Page 
   app.get("/events", function(req, res, next){
     calendarCollection.find().toArray()
     .then(calendar => {
@@ -68,7 +84,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     
   });
   
-  
+// This statment will manage the Event Page calander part
   app.post("/events/:indexM/changeMonth", function(req, res, next){
     var direction = req.params.indexM;
     if(direction == 1 && monthindex < 11){
@@ -78,7 +94,8 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
       monthindex -= 1;
     }
   });
-  
+
+// This statment will manage the Event Page RSVP part
   app.post("/events/:event/addPerson", function(req, res, next){
     var n = req.params.event;
     var newObj = {
@@ -101,7 +118,8 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
       res.status(400).send("This request needs both a name, email, and ONID");
     }
   });
-    
+
+// This statment will manage the Community Service Page    
   app.get('/community-service', function(req, res, next){
 
     calendarCollection.find().toArray()
@@ -121,7 +139,8 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
       res.status(200);
     })
   });
-  
+
+// This statment will manage the Community Service Page Calander part
   app.post("/community-service/:indexM/changeMonth", function(req, res, next){
     var direction = req.params.indexM;
     if(direction == 1 && monthindex < 11){
@@ -131,7 +150,8 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
       monthindex -= 1;
     }
   });
-  
+
+// This statment will manage the Community Service Page RSVP part
   app.post("/community-service/:community/addPerson", function(req, res, next){
     var n = req.params.community;
     var newObj = {
@@ -155,6 +175,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     }
   });
 
+// This statment will manage the Member Page
   app.get('/members', function(req, res, next){
     peopleCollection.find().toArray()
     .then(results => {
@@ -176,4 +197,4 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
 
 app.listen(port, function(){
   console.log("Server is listening on this port: ", port);
-})
+});
