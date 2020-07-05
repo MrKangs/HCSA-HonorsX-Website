@@ -1,26 +1,20 @@
 //Server file for website
 //Author: Adam Kerr, Keegan, Kenneth
 
-var path = require('path');
 var express = require('express');
 var exp_handle = require("express-handlebars");
-var MongoClient = require('mongodb').MongoClient;
-var connectionString = 'mongodb+srv://MrKangs:zwqF2R6aIoN184kh@hcsahonorsx-el8jr.mongodb.net/test?retryWrites=true&w=majority';
-
-
-
-
-var fs = require('fs');
-const { runInNewContext } = require('vm');
-
 var app = express();
 var port = process.env.PORT || 3000;
+
+var MongoClient = require('mongodb').MongoClient;
+var connectionString = 'mongodb+srv://MrKangs:zwqF2R6aIoN184kh@hcsahonorsx-el8jr.mongodb.net/test?retryWrites=true&w=majority';
 
 app.engine('handlebars', exp_handle({ defualtLayout: "main"}));
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.static('public'));
+
 
 MongoClient.connect(connectionString, {useUnifiedTopology: true})
 .then(client => {
@@ -31,6 +25,8 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
   const communityServiceCollection = db.collection('communityServiceData');
   const calendarCollection = db.collection('calendarData');
   const peopleCollection = db.collection('peopleData');
+
+  
   
   app.get('/', function(req, res, next) {
     eventCollection.find().toArray()
