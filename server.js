@@ -50,7 +50,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     
   });
   
-  var monthindex = 5;
+  var monthindex = 6;
   
   app.get("/events", function(req, res, next){
     calendarCollection.find().toArray()
@@ -83,28 +83,23 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     }
   });
   
-  /*
-if(eventData[event]){
-      eventData[event].going.push({
-        person: req.body.person,
-        email: req.body.email,
-        id: req.body.ID
-      });
-      fs.writeFile('eventData.json', JSON.stringify(eventData), function(err){
-        console.log(err);
-      });
-      res.status(200).send("Person Successfully Added");
-  */
   app.post("/events/:event/addPerson", function(req, res, next){
     var n = req.params.event;
+    var newObj = {
+      person: req.body.person,
+      email: req.body.email,
+      id: req.body.ID
+    }
+
+    console.log(newObj);
     if (eventCollection.find({eventNum: n})){
-      eventCollection.insert({eventNum: n}, {$addToSet: {
-        going: {
-          person: req.body.person,
-          email: req.body.email,
-          id: req.body.ID
-        }
-      }})
+      console.log("It passes");
+      eventCollection.findOneAndUpdate({eventNum: n}, {$addToSet: {'going': newObj}})
+    .then(result => {
+      console.log("Updated!");
+      res.statusCode(200);
+      res.redirect('/events');
+      })
     }
     else{
       res.status(400).send("This request needs both a name, email, and ONID");
@@ -142,19 +137,26 @@ if(eventData[event]){
   });
   
   app.post("/community-service/:community/addPerson", function(req, res, next){
-    var community = req.params.community;
-    if(communityServiceData[community]){
-      communityServiceData[community].going.push({
-        person: req.body.person,
-        email: req.body.email,
-        id: req.body.ID
-      });
-      fs.writeFile('communityServiceData.json', JSON.stringify(communityServiceData), function(err){
-        console.log(err);
-      });
-      res.status(200).send("Person Successfully Added");
+    var n = req.params.community;
+    var newObj = {
+      person: req.body.person,
+      email: req.body.email,
+      id: req.body.ID
     }
-    else res.status(400).send("This request needs both a name, email, and ONID");;
+
+    console.log(newObj);
+    if (communityServiceCollection.find({serviceNum: n})){
+      console.log("It passes");
+      communityServiceCollection.findOneAndUpdate({serviceNum: n}, {$addToSet: {'going': newObj}})
+    .then(result => {
+      console.log("Updated!");
+      res.status(200);
+      res.redirect('/community-service');
+      })
+    }
+    else{
+      res.status(400).send("This request needs both a name, email, and ONID");
+    }
   });
 
   app.get('/members', function(req, res, next){
@@ -174,7 +176,7 @@ if(eventData[event]){
     res.render('404Page', {
     });
   });
-});
+}).catch(error => console.error(error));
 
 app.listen(port, function(){
   console.log("Server is listening on this port: ", port);
