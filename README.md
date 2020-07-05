@@ -1,12 +1,25 @@
-Welcome to the HCSA/HonorsX Website repository. In this repository, you can modify, add, and delete the HCSA/HonorsX Website. 
-In this read me file, you will learn how to modify content inside the website. To see more information, please check out the Wiki Page. 
-The link is provided below.
-https://github.com/MrKangs/HonorsX_WebSite/wiki
+Before to start working on this branch,
+1. You need to install Node.js by going here: https://nodejs.org/en/
 
-Note: If you are trying to update the website content, please check out the contentInformation branch.
+2. Then copy the following message in your terminal or Git Bash
+    a. npm install express
+    b. npm install express-handlebars
+    c. npm install mongodb
+    d. npm install handlebars
+    e. npm install nodemon --save-dev
 
-Developer Note: Need to install Node.js and npm to run the server. Otherwise need Java and a text editor to fix context or modify the website features.
+3. In order to see the server, type the following
+    npm run dev
 
-Currently, all the image are uploaded to Imgur that is under Kenneth's account. You can change them by removing the link over MongoDB. 
+When you run this command, it will livily update as you modify to the website.
 
-We need to find a solution of storing image links
+
+Current task to do
+
+1. MongoDB Guideline to users who are interested to be part of contributing
+2. Image storeage
+    Currently, all the image are uploaded to Imgur that is under Kenneth's account. You can change them by removing the link over MongoDB.(Need a space that can have the image can its own html link yet managable) 
+3. Adding Study Group page or not
+4. Getting ideas of how can people request an update for the website if someone want to upload event or community service
+5. Add more features on the homepage
+6. Update new image for the website
