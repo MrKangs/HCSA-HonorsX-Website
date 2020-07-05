@@ -4,18 +4,14 @@ var communityServiceArr = document.getElementsByClassName("community-service-hol
 var input;
 var nameArr = [];
 
-for(var i = 0; i < communityServiceArr.length; i++){
-    nameArr[i] = communityServiceArr[i].getElementsByClassName("rsvp-name-search");
-}
-
 function find(event){
 
     input = event.currentTarget.value.toLowerCase();
-    search(event);
-}
 
-function search(event){
-    
+    for(var i = 0; i < communityServiceArr.length; i++){
+        nameArr[i] = communityServiceArr[i].getElementsByClassName("rsvp-name-search");
+    }
+
     var flag;
     for(var i = 0; i < communityServiceName.length; i++){
         flag = 0;
@@ -41,8 +37,6 @@ function search(event){
             ((communityServiceName[i].textContent.toLowerCase().includes(input)) == true)){
                     communityServiceArr[i].style.display = "block";
             }
-            
-
         }
     }
 }

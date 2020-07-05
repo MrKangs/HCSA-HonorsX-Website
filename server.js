@@ -97,7 +97,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
       eventCollection.findOneAndUpdate({eventNum: n}, {$addToSet: {'going': newObj}})
     .then(result => {
       console.log("Updated!");
-      res.statusCode(200);
+      res.status(200);
       res.redirect('/events');
       })
     }
