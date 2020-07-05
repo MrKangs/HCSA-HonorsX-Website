@@ -7,4 +7,6 @@ Note: If you are trying to update the website content, please check out the cont
 
 Developer Note: Need to install Node.js and npm to run the server. Otherwise need Java and a text editor to fix context or modify the website features.
 
+Currently, all the image are uploaded to Imgur that is under Kenneth's account. You can change them by removing the link over MongoDB. 
 
+We need to find a solution of storing image links

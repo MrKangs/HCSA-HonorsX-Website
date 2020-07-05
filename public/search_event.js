@@ -4,18 +4,13 @@ var eventArr = document.getElementsByClassName("event-holder");
 var input;
 var nameArr = [];
 
-for(var i = 0; i < eventArr.length; i++){
-    nameArr[i] = eventArr[i].getElementsByClassName("rsvp-name-search");
-}
-
 function find(event){
 
     input = event.currentTarget.value.toLowerCase();
-    search(event);
-}
-
-function search(event){
-    
+    for(var i = 0; i < eventArr.length; i++){
+        nameArr[i] = eventArr[i].getElementsByClassName("rsvp-name-search");
+        console.log(nameArr);
+    }
     var flag;
     for(var i = 0; i < eventName.length; i++){
         flag = 0;
@@ -41,8 +36,6 @@ function search(event){
             ((eventName[i].textContent.toLowerCase().includes(input)) == true)){
                     eventArr[i].style.display = "block";
             }
-            
-
         }
     }
 }
