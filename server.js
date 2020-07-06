@@ -39,25 +39,35 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     .then(results => {
       eventCollection.find().toArray()
       .then(result => {
-        res.render("homePage", {
-          welcome_message: results[0].Welcome_Message,
-          Intro: results[0].intro,
-          goal_message: results[0].Goal_Message,
-          Goal1: results[0].goal1,
-          Goal2: results[0].goal2,
-          Goal3: results[0].goal3,
-          upcoming_event_message: results[0].Upcoming_Event_Message,
-          Image1: results[0].image1,
-          Image2: results[0].image2,
-          Image3: results[0].image3,
-          Image4: results[0].image4,
-          source: result[0].source,
-          name: result[0].name,
-          details: result[0].details,
-          description: result[0].description,
-          going: result[0].going,
-          faqts: "true"
-        });
+        communityServiceCollection.find().toArray()
+        .then(resultss => {
+          res.render("homePage", {
+            welcome_message: results[0].Welcome_Message,
+            Intro: results[0].intro,
+            goal_message: results[0].Goal_Message,
+            Goal1: results[0].goal1,
+            Goal2: results[0].goal2,
+            Goal3: results[0].goal3,
+            upcoming_event_message: results[0].Upcoming_Event_Message,
+            Image1: results[0].image1,
+            Image2: results[0].image2,
+            Image3: results[0].image3,
+            Image4: results[0].image4,
+            sourceEvent: result[0].source,
+            nameEvent: result[0].name,
+            detailsEvent: result[0].details,
+            descriptionEvent: result[0].description,
+            goingEvent: result[0].going,
+            faqtsEvent: "true",
+            sourceCom: resultss[0].source,
+            nameCom: resultss[0].name,
+            detailsCom: resultss[0].details,
+            descriptionCom: resultss[0].description,
+            goingCom: resultss[0].going,
+            faqtsCom: "true"
+          });
+        })
+
       console.log("Serving the Home Page");
       res.status(200);
     });    
