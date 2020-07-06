@@ -4,4 +4,3 @@ Please checkout the Wiki page by clicking either the link or going to the Wiki p
 You will find detail notes about this website. 
 
 https://github.com/MrKangs/HonorsX_WebSite/wiki
-
