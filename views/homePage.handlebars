@@ -1,5 +1,9 @@
 {{!Home Page View Template}}
 {{!Author: Adam Kerr and Kenneth Kang}}
+<head>
+<script src="./public/communityService.js" defer></script>
+<script src="./public/events.js" defer></script>
+</head>
 
 <main class = "home">
 <div id = "welcome">
@@ -35,10 +39,10 @@
 <section id = "peek">
   <h2 id= "sub-title">{{upcoming_event_message}}</h2>
     <div class ="all-events">
-      {{> event}}
+      {{>event}}
     </div>
     <div class = "all-community-services">
-      {{> communityService}}
+      {{>communityService}}
     </div>
 </section>
 

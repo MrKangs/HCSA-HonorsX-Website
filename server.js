@@ -41,6 +41,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
       .then(result => {
         communityServiceCollection.find().toArray()
         .then(resultss => {
+          console.log(result[0]);
           res.render("homePage", {
             welcome_message: results[0].Welcome_Message,
             Intro: results[0].intro,
@@ -53,18 +54,16 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
             Image2: results[0].image2,
             Image3: results[0].image3,
             Image4: results[0].image4,
-            sourceEvent: result[0].source,
-            nameEvent: result[0].name,
-            detailsEvent: result[0].details,
-            descriptionEvent: result[0].description,
-            goingEvent: result[0].going,
-            faqtsEvent: "true",
-            sourceCom: resultss[0].source,
-            nameCom: resultss[0].name,
-            detailsCom: resultss[0].details,
-            descriptionCom: resultss[0].description,
-            goingCom: resultss[0].going,
-            faqtsCom: "true"
+            sourceEvent: result[0].sourceEvent,
+            nameEvent: result[0].nameEvent,
+            detailsEvent: result[0].detailsEvent,
+            descriptionEvent: result[0].descriptionEvent,
+            faqtsEvent: 1,
+            sourceCom: resultss[0].sourceCom,
+            nameCom: resultss[0].nameCom,
+            detailsCom: resultss[0].detailsCom,
+            descriptionCom: resultss[0].descriptionCom,
+            faqtsCom: 1
           });
         })
 
@@ -82,7 +81,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
         res.render('eventsPage', {
           EVENTS: results,
           script: "./events.js",
-          faqts: 1,
+          faqtsEvent: 1,
           month: calendar[monthindex].month,
           weekdays: calendar[monthindex].weekdays,
           daysofweek: calendar[monthindex].dates,
@@ -139,7 +138,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
         res.render('communityServicePage',{
           COMMUNITY: results,
           script: "./communityService.js",
-          faqts: 1,
+          faqtsCom: 1,
           month: calendar[monthindex].month,
           weekdays: calendar[monthindex].weekdays,
           daysofweek: calendar[monthindex].dates,
